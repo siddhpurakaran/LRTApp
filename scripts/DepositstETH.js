@@ -1,7 +1,7 @@
 const { ethers, upgrades } = require("hardhat");
 const stETH = "0x3F1c547b21f65e10480dE3ad8E19fAAC46C95034";
-const LRTMasterAdd = "0xdA98f2E8cB30A8174E0d8E5FDdAdEA46f8b84836";
-const mLRTAdd = "0x8ADb1774C6B6d5b2516502D24e65823c2afAaaE9";
+const LRTMasterAdd = "0x6E0230A8B6783a5E3f52C83A39301F9BB2657075";
+const mLRTAdd = "0x98b71Ed091999337872a0a2c78d333f909594717";
 
 async function DepositstETH() {
     const accounts = await hre.ethers.getSigners();
@@ -14,7 +14,7 @@ async function DepositstETH() {
     console.log("lrtMaster connected : ", lrtMasterAdd);
 
     const stETHToken = await ethers.getContractAt("ERC20", stETH);
-    await stETHToken.approve(lrtMasterAdd, ethers.parseEther("1000"));
+    await stETHToken.approve(lrtMasterAdd, ethers.parseEther("1000"), { "maxFeePerGas": 7752656615 });
     console.log("approved lrtMaster to spend stETH");
 
     // let balanceBefore = await stETHToken.balanceOf(accounts[0].address);
@@ -26,7 +26,7 @@ async function DepositstETH() {
 
     const mLRT = await ethers.getContractAt("mLRT", mLRTAdd);
     let balanceMLRT = await mLRT.balanceOf(accounts[0].address);
-    console.log(ethers.formatEther(balanceMLRT),"mLRT minted");
+    console.log(ethers.formatEther(balanceMLRT), "mLRT minted");
 }
 
 DepositstETH().catch((error) => {

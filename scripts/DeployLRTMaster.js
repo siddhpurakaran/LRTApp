@@ -12,7 +12,7 @@ async function DeployLRTMaster() {
   }
 
   const MLRT = await ethers.getContractFactory("mLRT");
-  const mLRT = await MLRT.deploy(accounts[0].address, {"gas_price": 100000000000});
+  const mLRT = await MLRT.deploy(accounts[0].address, {"maxFeePerGas": 7752656615});
   console.log("mLRT deployed : ", mLRT.target);
 
   const LRTMasterImpl = await ethers.getContractFactory("LRTMaster");
