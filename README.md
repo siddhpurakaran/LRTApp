@@ -13,10 +13,10 @@ git clone git@github.com:siddhpurakaran/LRTApp.git
 npm install
 ```
 
-3. Import 2 Account keys  (keys are in the .env.sample file of repo)
+3. create .env file with keys of .env.sample file(2 keys are there the .env.sample file of repo)
 ```shell
-npx hardhat vars set ENCRYPTED_KEY xxxxxxxxxxxxxxxxxxxxx
-npx hardhat vars set ENCRYPTED_KEY2 xxxxxxxxxxxxxxxxxxxxx
+ENCRYPTED_KEY=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+ENCRYPTED_KEY2=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
 4. Compile contracts 

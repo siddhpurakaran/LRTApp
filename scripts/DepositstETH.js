@@ -1,7 +1,7 @@
-const { ethers, upgrades } = require("hardhat");
+const { ethers } = require("hardhat");
 const stETH = "0x3F1c547b21f65e10480dE3ad8E19fAAC46C95034";
-const LRTMasterAdd = "0x6E0230A8B6783a5E3f52C83A39301F9BB2657075";
-const mLRTAdd = "0x98b71Ed091999337872a0a2c78d333f909594717";
+const LRTMasterAdd = "0x5A32b5E4e1C1144f2A796827866C1CF88fa73236";
+const mLRTAdd = "0xEF97046f1c8b46FFD595FDFbeDFBac907d4d540B";
 
 async function DepositstETH() {
     const accounts = await hre.ethers.getSigners();

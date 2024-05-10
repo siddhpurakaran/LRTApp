@@ -1,9 +1,9 @@
+require('dotenv').config()
 require("@nomicfoundation/hardhat-toolbox");
 require('@openzeppelin/hardhat-upgrades');
 
-const { vars } = require("hardhat/config");
-const ENCRYPTED_KEY = vars.get("ENCRYPTED_KEY");
-const ENCRYPTED_KEY2 = vars.get("ENCRYPTED_KEY2");
+const ENCRYPTED_KEY = process.env.ENCRYPTED_KEY;
+const ENCRYPTED_KEY2 = process.env.ENCRYPTED_KEY2;
 
 module.exports = {
   solidity: "0.8.24",

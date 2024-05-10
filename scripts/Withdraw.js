@@ -1,5 +1,5 @@
-const { ethers, upgrades } = require("hardhat");
-const LRTMasterAdd = "0x6E0230A8B6783a5E3f52C83A39301F9BB2657075";
+const { ethers } = require("hardhat");
+const LRTMasterAdd = "0x5A32b5E4e1C1144f2A796827866C1CF88fa73236";
 
 async function mineNBlocks(n) {
   for (let index = 0; index < n; index++) {
