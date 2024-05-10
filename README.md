@@ -25,7 +25,7 @@ npx hardhat compile
 ```
 
 5. Start local fork node of holesky testnet 
-Note : use good RPC instead of public once for avoiding RPC related errors
+ - Note : use good RPC instead of public once for avoiding RPC related errors
 ```shell
 npx hardhat node --fork https://ethereum-holesky.blockpi.network/v1/rpc/public		
 ```
@@ -35,30 +35,30 @@ npx hardhat node --fork https://ethereum-holesky.blockpi.network/v1/rpc/public
 npx hardhat run ./scripts/DeployLRTMaster.js --network lholesky
 ```
 
-6. Deposit stETH into eigenlayer with this app
-Note : accounts imported in step-3 already have few stETH on holesky testnet
-        Make sure Addresses of LRTMaster & mLRT in all scripts are same as addresses printed on previous step
-        If timeout error occurs then run this command again
+7. Deposit stETH into eigenlayer with this app
+- Note : accounts imported in step-3 already have few stETH on holesky testnet
+- Make sure Addresses of LRTMaster & mLRT in all scripts are same as addresses printed on previous step
+- If timeout error occurs then run this command again
 ```shell
 npx hardhat run ./scripts/DepositstETH.js --network lholesky
 ```
 
-7. Withdraw restaked tokens from eigenlayer
-Note : Given script will do 2 transactions 1. initiates/queue withdrawal and 2. complete withdrawal
-        Withdrawal can only done once deposited stETH thorugh above step-6 
+8. Withdraw restaked tokens from eigenlayer
+- Note : Given script will do 2 transactions 1. initiates/queue withdrawal and 2. complete withdrawal
+- Withdrawal can only done once deposited stETH thorugh above step-6 
 ```shell
 npx hardhat run ./scripts/Withdraw.js --network lholesky
 ```
 
-8. Delegate & Undelegating to any operators
-Note : Here in this script we are delegating to operator node of Galxe
-        This script will first delegate and then undelegate to Galxe operator node
+9. Delegate & Undelegating to any operators
+- Note : Here in this script we are delegating to operator node of Galxe
+- This script will first delegate and then undelegate to Galxe operator node
 ```shell
 npx hardhat run ./scripts/DelegateToOperator.js --network lholesky
 ```
 
 
-9. Run tests for contracts 
+10. Run tests for contracts 
 ```shell
 npx hardhat test
 ```

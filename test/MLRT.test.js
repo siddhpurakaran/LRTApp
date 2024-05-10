@@ -1,8 +1,6 @@
 const {
-    time,
     loadFixture,
 } = require("@nomicfoundation/hardhat-toolbox/network-helpers");
-const { anyValue } = require("@nomicfoundation/hardhat-chai-matchers/withArgs");
 const { expect } = require("chai");
 const { ethers } = require("hardhat");
 
@@ -34,7 +32,7 @@ describe("MLRT", function () {
             expect(await mLRT.hasRole(await mLRT.DEFAULT_ADMIN_ROLE(), otherAccount)).to.equal(false);
         });
 
-        it("Should fail when passed zero address as admin", async function () {
+        it("Should Revert when passed zero address as admin", async function () {
             const MLRT = await ethers.getContractFactory("mLRT");
             await expect(MLRT.deploy("0x0000000000000000000000000000000000000000")).to.be.revertedWithCustomError(MLRT, "ZeroAddress");
         });

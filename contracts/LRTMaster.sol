@@ -51,7 +51,7 @@ contract LRTMaster is Initializable, AccessControlUpgradeable, ReentrancyGuardUp
     // StrategyManager contract of Eigenlayer
     IStrategyManager public strategyManager;
     // Strategy contract for stETH
-    IStrategy stETHStrategy;
+    IStrategy public stETHStrategy;
 
     // Total amount value of deposited stETH by users
     uint256 public totalstETHDeposited;
@@ -119,7 +119,7 @@ contract LRTMaster is Initializable, AccessControlUpgradeable, ReentrancyGuardUp
      * @param receiver The address to receive the minted mLRTs.
      * @return mintedMLRT The amount of mLRT minted for the deposited stETH.
      */
-    function deposit(address receiver, uint256 amount) external nonReentrant returns (uint256 mintedMLRT) {
+    function deposit(address receiver, uint256 amount) external notZeroAddress(receiver) nonReentrant returns (uint256 mintedMLRT) {
         if (depositsPaused) {
             revert Paused();
         }
@@ -181,10 +181,7 @@ contract LRTMaster is Initializable, AccessControlUpgradeable, ReentrancyGuardUp
     /// @param operator The address of operator to which we want to delegate token shares.
     /// @dev This function allows admin to delegate shares of deposited amounts to any operator.
     /// @dev This can only be called by user with ADMINROLE.
-    function delegate(address operator) external onlyRole(ADMIN_ROLE) {
-        if (operator == address(0)) {
-            revert ZeroAddress();
-        }
+    function delegate(address operator) external notZeroAddress(operator) onlyRole(ADMIN_ROLE) {
         ISignatureUtils.SignatureWithExpiry memory signature;
         delegationManager.delegateTo(operator, signature, bytes32(0x0));
     }
@@ -250,5 +247,18 @@ contract LRTMaster is Initializable, AccessControlUpgradeable, ReentrancyGuardUp
      */
     function availableShareToWithdraw() public view returns (uint256) {
         return stETHStrategy.shares(address(this));
+    }
+
+    //--------------------------------------------------------------------------------------
+    //----------------------------------  MODIFIERS  ---------------------------------------
+    //--------------------------------------------------------------------------------------
+
+    /// @notice Ensure that the given address is not the zero address.
+    /// @param _address The address to check.
+    modifier notZeroAddress(address _address) {
+        if (_address == address(0)) {
+            revert ZeroAddress();
+        }
+        _;
     }
 }
